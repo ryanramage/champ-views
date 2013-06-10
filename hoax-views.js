@@ -11,9 +11,16 @@
 
 var views = {};
 
+views.just_file_docs = {
+    map: function(doc) {
+        if (doc._attachments && doc._attachments['file.mp3']) emit(doc._id, null);
+    }
+}
+
+
 views.all_track_assets =  {
      map: function (doc) {
-        if (doc._attachments && doc._attachments['file.mp3']) emit([doc.id, 0], null);
+        if (doc._attachments && doc._attachments['file.mp3']) emit([doc._id, 0], null);
         if (doc.musicbrainz_trackid) emit([doc.musicbrainz_trackid, 1], null);
         if (doc.type === 'rating') emit([doc.musicbrainz_trackid, 2], null);
      }
@@ -43,7 +50,7 @@ views.track_title_by_album = {
 
             var position = 0;
             if (doc.tracknumber) {
-                position = doc.tracknumber.split('/')[0];
+                position = Number(doc.tracknumber.split('/')[0]);
             }
             emit([doc.album, doc.musicbrainz_albumid, position], doc.title);
         }
@@ -54,7 +61,7 @@ views.track_title_by_album = {
 views.artists = {
     map: function(doc) {
         if (doc.artist) {
-            emit(doc.album, null);
+            emit(doc.artist, null);
         }
     },
     reduce: '_count'
@@ -66,7 +73,7 @@ views.tracks_by_artist_and_album = {
 
             var position = 0;
             if (doc.tracknumber) {
-                position = doc.tracknumber.split('/')[0];
+                position = Number(doc.tracknumber.split('/')[0]);
             }
             emit([doc.artist, doc.musicbrainz_albumid, position], {title: doc.title, album: doc.album} );
         }
