@@ -1,13 +1,13 @@
 {
-  "name": "hoax-views",
-  "description": "Map/reduce functions used in the hoax music player",
+  "name": "champ-views",
+  "description": "Map/reduce functions used in the champ music player",
   "tags": [ "couchdb", "couchapp"],
   "version": "0.0.1",
   "author": "Ryan Ramage",
   "repository": {
     "type": "git",
-    "url": "https://github.com/ryanramage/hoax-views.git"
+    "url": "https://github.com/ryanramage/champ-views.git"
   },
-  "bugs": "https://github.com/ryanramage/hoax-views/issues",
-  "main": "hoax-views.js"
+  "bugs": "https://github.com/ryanramage/champ-views/issues",
+  "main": "champ-views.js"
 }

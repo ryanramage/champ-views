@@ -4,7 +4,7 @@
     } else if (typeof define === 'function' && define.amd) {
         define([],factory);
     } else {
-        root.hoax_views = factory();
+        root.champ_views = factory();
     }
 }(this, function () {
 
